@@ -28,8 +28,7 @@ function render(trainer){//console.log(`${trainer.id} ${trainer.name}`)
     </ul>
   </div>`
     container.appendChild(divP)
-    //The above has create a trainer and the below needs to fill the container of UL with LI elements of pokemon
-        
+    //The above has create a trainer and the below needs to fill the container of UL with LI elements of pokemon  
     trainer.pokemons.forEach(poke=>{//console.log(poke)
     const pokecontainer = divP.lastChild.lastElementChild
     const list = document.createElement('li')
@@ -37,7 +36,6 @@ function render(trainer){//console.log(`${trainer.id} ${trainer.name}`)
     list.innerHTML=`${poke.nickname} ${poke.species} <button class="release" data-pokemon-id="${poke.id}">Release</button>`
     pokecontainer.appendChild(list)
     })
-    
 }
 
 function clicker(){
@@ -66,21 +64,8 @@ function clicker(){
                 })
             }
         }
-        // //The below is the release button
         if(e.target.matches('.release')){//console.log("this is the release button")
             const pokeId = parseInt(e.target.dataset.pokemonId)
-            // const trainerId = parseInt(e.target.parentElement.dataset.trainerId)
-            // const nickname = e.target.parentElement.textContent.split(" ")[0]
-            // const species = e.target.parentElement.textContent.split(" ")[1]
-
-            // faker ={
-            //     "id":pokeId,
-            //     "nickname":nickname,
-            //     "species":species,
-            //     "trainer_id":trainerId
-            // }
-
-            // console.log(faker)
             fetch('http://localhost:3000/pokemons/'+pokeId,{
             method: "DELETE" 
             }).then(resp => resp.json()).then(string =>{
